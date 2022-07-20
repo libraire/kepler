@@ -1,32 +1,40 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
+  <div class="container">
+    <div class="header">
+      <img src="../assets/logo_white.png" alt="Libra"/><span>Libra</span>
+
+      <ul>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Docs</a></li>
+      </ul>
+    </div>
+    <div class="content">
+      <p class="title">"Hello world" at <span>Libra</span></p>
+      <p>快乐的事情正在发生！</p>
+      <p>这里的内容需要你们补充...</p>
+      <p>老夫今晚肝不动了</p>
+      <p>久了不写代码，手非常生👋</p>
+    </div>
+    <div class="hello" v-if="step === 'welcome'">
+      <input v-model="userName" placeholder="输入姓名开始答题"/>
+      <button @click="begin">进入答题{{msg}}</button>
+    </div>
+    <div v-if="step === 'answer'">
+      <div>
+        {{ques[index].title}}
+      </div>
+      <div>
+        <ul>
+          <li v-for="item in ques[index].items" v-bind:key="item.id">{{item.item}}</li>
+        </ul>
+      </div>
+      <div>
+        <button @click="next">下一题</button>
+      </div>
+    </div>
+    <div v-if="step === 'result'">
+      恭喜🎉 {{result}} 分
+    </div>
   </div>
 </template>
 
@@ -35,24 +43,88 @@ export default {
   name: 'HelloWorld',
   props: {
     msg: String
+  },
+  data() {
+    return {
+      userName: '',
+      step: 'welcome',
+      index: 0,
+      ques: [],
+      result: 100
+    }
+  },
+  methods: {
+    begin() {
+      var ques = "[{\"id\": 1, \"title\": \"题目1\", \"items\": [{\"id\": 1, \"item\": \"选项A\"}, {\"id\": 2, \"item\": \"选项B\"},{\"id\": 3, \"item\": \"选项C\", \"right\": 1}]},\n" +
+          "\n" +
+          "{\"id\": 1, \"title\": \"题目2\", \"items\": [{\"id\": 1, \"item\": \"选项A2\"}, {\"id\": 2, \"item\": \"选项B2\"},{\"id\": 3, \"item\": \"选项C2\", \"right\": 1}]}]";
+      var queJSON = JSON.parse(ques);
+      console.log(queJSON);
+      this.ques = queJSON;
+      this.step = 'answer';
+    },
+    next() {
+      if (this.ques.length > this.index + 1) {
+        this.index++;
+      } else {
+        this.step = 'result';
+        this.result = 90;
+      }
+    }
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
+
+.container {
+  max-width: 1280px;
+  min-width: 600px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
+.header {
+  text-align: left;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
+.header img {
+  width: 40px;
+  height: 40px;
 }
-a {
-  color: #42b983;
+.header span {
+  font-size: 32px;
+  font-weight: bold;
+  margin-top: 2px;
+  margin-left: 8px;
+}
+.header ul {
+  margin: 0 80px;
+  line-height: 40px;
+}
+.header ul li {
+  font-size: 26px;
+  margin-top: 8px;
+  margin-left: 20px;
+}
+.content {
+  margin-top: 60px;
+  padding: 10px;
+}
+.content p {
+  font-size: 18px;
+}
+.content .title {
+  font-size: 40px;
+  font-weight: bold;
+}
+.content .title>span {
+  color: #00e27b;
 }
 </style>
