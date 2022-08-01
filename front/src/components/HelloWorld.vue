@@ -15,10 +15,31 @@
       <p>老夫今晚肝不动了</p>
       <p>久了不写代码，手非常生👋</p>
     </div>
-    <div class="hello" v-if="step === 'welcome'">
-      <input v-model="userName" placeholder="输入姓名开始答题"/>
-      <button @click="begin">进入答题{{msg}}</button>
+    <div class="libra_cards">
+      <div class="libra_card">
+        <div class="card_content">
+          <font-awesome-icon icon="fa-brands fa-algolia" />
+          <div class="keyword">develop</div>
+        </div>
+      </div>
+      <div class="libra_card">
+        <div class="card_content">
+          <font-awesome-icon icon="fa-brands fa-algolia" />
+          <div class="keyword">develop</div>
+        </div>
+      </div>
+      <div class="libra_card">
+        <div class="card_content">
+          <font-awesome-icon icon="fa-brands fa-algolia" />
+          <div class="keyword">develop</div>
+        </div>
+      </div>
     </div>
+
+<!--    <div class="hello" v-if="step === 'welcome'">-->
+<!--      <input v-model="userName" placeholder="输入姓名开始答题"/>-->
+<!--      <button @click="begin">进入答题{{msg}}</button>-->
+<!--    </div>-->
     <div v-if="step === 'answer'">
       <div>
         {{ques[index].title}}
@@ -93,6 +114,7 @@ export default {
   padding: 10px 20px;
   display: flex;
   align-items: center;
+  border-bottom: 2px solid #fff;
 }
 .header img {
   width: 40px;
@@ -126,5 +148,45 @@ export default {
 }
 .content .title>span {
   color: #00e27b;
+}
+
+.libra_cards {
+  margin-top: 80px;
+  display: flex;
+  align-items:center;
+  justify-content:center;
+  height: 140px;
+}
+.libra_cards .libra_card {
+  background: #fff;
+  color: #33aaee;
+  box-shadow: inset 0px 0 30px 0 rgb(0 0 0 / 20%);
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  position: relative;
+}
+.libra_cards .libra_card:hover {
+  box-shadow: inset 0px 0 30px 0 rgb(0 0 0 / 30%);
+}
+
+
+.libra_cards .libra_card .card_content {
+  position: relative;
+  top:50%;
+  transform:translateY(-50%);
+}
+.libra_cards .libra_card .card_content:hover {
+  color: #00e27b;
+  cursor: pointer;
+}
+
+.libra_cards .libra_card .card_content .keyword {
+  font-weight: 600;
+}
+
+.libra_cards .libra_card svg{
+  width: 60px;
+  height: 60px;
 }
 </style>
