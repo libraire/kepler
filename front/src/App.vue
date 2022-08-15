@@ -27,6 +27,7 @@ export default {
 html, body {
   margin: 0;
   height: 100%;
+  min-height: 886px;
 }
 
 h3 {

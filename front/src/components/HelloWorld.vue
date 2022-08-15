@@ -9,31 +9,40 @@
       </ul>
     </div>
     <div class="content">
-      <p class="title">"Hello world" at <span>Libra</span></p>
+      <p class="title">"Hello world" @ <span>Libra</span></p>
       <p>快乐的事情正在发生！</p>
       <p>这里的内容需要你们补充...</p>
       <p>老夫今晚肝不动了</p>
       <p>久了不写代码，手非常生👋</p>
+      <p>目标是<u>星辰大海</u></p>
+      <div class="img_libra">
+        <img src="../assets/libra.png" alt="back"/>
+      </div>
     </div>
+
     <div class="libra_cards">
       <div class="libra_card">
         <div class="card_content">
-          <font-awesome-icon icon="fa-brands fa-algolia" />
+          <font-awesome-icon icon="fa-solid fa-user-secret" />
           <div class="keyword">develop</div>
         </div>
       </div>
       <div class="libra_card">
         <div class="card_content">
-          <font-awesome-icon icon="fa-brands fa-algolia" />
-          <div class="keyword">develop</div>
+          <font-awesome-icon icon="fa-brands fa-weebly" />
+          <div class="keyword">Woop!</div>
         </div>
       </div>
       <div class="libra_card">
         <div class="card_content">
           <font-awesome-icon icon="fa-brands fa-algolia" />
-          <div class="keyword">develop</div>
+          <div class="keyword">For HJW</div>
         </div>
       </div>
+    </div>
+
+    <div class="footer">
+      <p>Made with ❤️ by LIBRA</p>
     </div>
 
 <!--    <div class="hello" v-if="step === 'welcome'">-->
@@ -102,6 +111,7 @@ export default {
 .container {
   max-width: 1280px;
   min-width: 600px;
+  height: 100%;
   position: absolute;
   left: 0;
   right: 0;
@@ -149,9 +159,16 @@ export default {
 .content .title>span {
   color: #00e27b;
 }
+.content .img_libra {
+  float: right;
+  margin-top: -300px;
+}
+.content .img_libra img {
+  width: 400px;
+}
 
 .libra_cards {
-  margin-top: 80px;
+  margin-top: 160px;
   display: flex;
   align-items:center;
   justify-content:center;
@@ -170,7 +187,6 @@ export default {
   box-shadow: inset 0px 0 30px 0 rgb(0 0 0 / 30%);
 }
 
-
 .libra_cards .libra_card .card_content {
   position: relative;
   top:50%;
@@ -188,5 +204,12 @@ export default {
 .libra_cards .libra_card svg{
   width: 60px;
   height: 60px;
+}
+
+.footer {
+  position: absolute;
+  bottom: 20px;
+  text-align: center;
+  width: 100%;
 }
 </style>
