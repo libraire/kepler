@@ -25,7 +25,8 @@ hs_err_pid*
 
 .DS_Store
 node_modules
-/dist
+dist
+package-lock.json
 
 
 # local env files
@@ -46,3 +47,4 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
+
